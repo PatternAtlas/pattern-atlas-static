@@ -27,6 +27,11 @@ from mistune.util import escape
 
 from .model import AtlasContent, Pattern, PatternLanguage
 
+# monkeypatch math plugin to use better regexes
+# https://github.com/lepture/mistune/issues/330
+math.BLOCK_MATH_PATTERN = r"(?!^ {4,})\$\$\s*(?P<math_text>\S.*?)\s*(?<!\\)\$\$"
+math.INLINE_MATH_PATTERN = r"\$\s*(?P<math_text>\S.*?)\s*(?<!\\)\$"
+
 # monkeyfix mistune to correctly escape rendered math
 _render_block_math = math.render_block_math
 _render_inline_math = math.render_inline_math
