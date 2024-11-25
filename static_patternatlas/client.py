@@ -202,7 +202,7 @@ class AtlasClient:
             pattern.known_uses = known_uses
 
         for section_alias in ("Related Pattern", "Related Patterns"):
-            related_patterns = _get_content(content, "Related Pattern")
+            related_patterns = _get_content(content, section_alias)
             if related_patterns:
                 pattern.related_patterns = (
                     pattern.related_patterns + "\n\n" + related_patterns
